@@ -273,7 +273,7 @@ client_execution() {
   fi
 
   if ! [ -r ${VDE_SWITCH} ] ; then
-    error "could not retrive vde_switch socket ${VDE_SWITCH}"
+    error "could not retrieve vde_switch socket ${VDE_SWITCH}"
     error "Server process not running yet?"
     bailout
   fi
