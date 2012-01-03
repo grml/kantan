@@ -109,7 +109,11 @@ server_execution() {
   VDE_SWITCH="${PROFILE_DIRECTORY}/vde_switch"
   mkdir -m 700 -p "$VDE_SWITCH"
 
-  monitorfile="${PROFILE_DIRECTORY}/kvm_server.monitor"
+  if [ -n "${VM_NAME:-}" ] ; then
+    monitorfile="${PROFILE_DIRECTORY}/kvm_server_${VM_NAME}.monitor"
+  else
+    monitorfile="${PROFILE_DIRECTORY}/kvm_server.monitor"
+  fi
 
   # checks
   if [ -z "${BOOT_DIR:-}" ] ; then
@@ -245,7 +249,11 @@ server_execution() {
 client_execution() {
   VDE_SWITCH="${PROFILE_DIRECTORY}/vde_switch"
 
-  monitorfile="${PROFILE_DIRECTORY}/kvm_client_${VM_NAME}.monitor"
+  if [ -n "${VM_NAME:-}" ] ; then
+    monitorfile="${PROFILE_DIRECTORY}/kvm_client_${VM_NAME}.monitor"
+  else
+    monitorfile="${PROFILE_DIRECTORY}/kvm_client.monitor"
+  fi
 
   if [ -z "${VM_NAME:-}" ] ; then
     if ! [ -r "${PROFILE_DIRECTORY}/client.cfg" ] ; then
