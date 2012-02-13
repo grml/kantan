@@ -219,7 +219,7 @@ server_execution() {
   fi
 
   if [ -z "${KERNEL_CMDLINE:-}" ] ; then
-    KERNEL_CMDLINE="boot=live ignore_bootid noquickconfig netscript=http://10.0.2.2:8000/netscript.sh console=tty1 console=ttyS0"
+    KERNEL_CMDLINE="boot=live ignore_bootid noquickconfig live-media-path=/live/grml64/ netscript=http://10.0.2.2:8000/netscript.sh console=tty1 console=ttyS0"
   fi
 
   KVM_CMDLINE="kvm -k en-us -m ${MEMORY:-1024}  -serial pty \
