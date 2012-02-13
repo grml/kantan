@@ -72,7 +72,8 @@ Mandatory options:
 Mandatory options for server mode:
 
    --iso     <grml.iso>    use specified grml.iso for booting
-   --bootdir <directory>   use kernel (linux26) + initrd (initrd.gz) from
+   --bootdir <directory>   use kernel (vmlinuz/linux26) and
+                           initrd (initrd.img/initrd.gz) from
                            specified directory
 
 Further options:
@@ -158,16 +159,18 @@ server_execution() {
   vde_switch -s ${VDE_SWITCH} &
   vde_pid="$!"
 
-  KERNEL=$(find ${BOOT_DIR} -name linux26 -print0)
-  INITRD=$(find ${BOOT_DIR} -name initrd.gz -print0)
+  # linux26 was the old kernel name, vmlinuz is the recent one
+  KERNEL=$(find ${BOOT_DIR} \( -name vmlinuz -o -name linux26 \) -print0)
+  # initrd.gz was the old initrd name, initrd.img is the recent one
+  INITRD=$(find ${BOOT_DIR} \( -name initrd.img -o -name initrd.gz \) -print0)
 
   if [ -z "${KERNEL:-}" ] ; then
-    error "no kernel file linux26 found inside $BOOT_DIR" >&2
+    error "no kernel file vmlinuz/linux26 found inside $BOOT_DIR" >&2
     bailout
   fi
 
   if [ -z "${INITRD:-}" ] ; then
-    error "no initrd file initrd.gz found inside $BOOT_DIR" >&2
+    error "no initrd file initrd.img/initrd.gz found inside $BOOT_DIR" >&2
     bailout
   fi
 

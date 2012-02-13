@@ -36,10 +36,10 @@ _kvm_arguments_ are optional and can be used to add additional arguments to the
 KVM commandline, like 'vga=791'.
 
 [TIP]
-The </mnt/point/of/iso/> doesn't necessarily need to be a real mountpoint.
-It's fine if you just copy linux26 and initrd.gz from /boot/* of the Grml
-ISO to </path/to/foobar/boot/> and specify </path/to/foobar/> as mountpoint
-directory then.
+The </mnt/point/of/iso/> doesn't necessarily need to be a real mountpoint.  It's
+fine if you just copy vmlinuz/linux26 and initrd.img/initrd.gz from /boot/* of
+the Grml ISO to </path/to/foobar/boot/> and specify </path/to/foobar/> as
+mountpoint directory then.
 
 Options for _kantan client_:
 
